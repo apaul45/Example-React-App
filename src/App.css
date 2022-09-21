@@ -1,0 +1,15 @@
+.app {
+  text-align: center;
+}
+
+.todo-list {
+    list-style-position: inside;
+}
+
+li {
+  line-height: 40px;
+}
+
+b, button {
+  margin-right: 1%;
+}

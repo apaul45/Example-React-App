@@ -3,6 +3,8 @@ import { Component } from 'react';
 import './App.css';
 import TodoCards from './TodoCards.js';
 
+//Class-based components keep track of all state variables within a singular object, 
+//and uses one setter to handle changing any/all variables
 class App extends Component {
   constructor(props) {
     super(props);
@@ -65,7 +67,7 @@ class App extends Component {
         {/* 
 
         Here, we're adding a new child component called TodoCards to handle 
-        displaying each todo. In line 78, we're passing a state variable to TodoCards.
+        displaying each todo. In line 81, we're passing a state variable to TodoCards.
         React will re-render all the child components whenever the state is changed.
 
         Props are read-only, which means that we also need callback functions that 
@@ -74,6 +76,8 @@ class App extends Component {
         When TodoCards calls these callbacks, App.js will call the functions assigned to the callbacks 
         below. Since these functions change the state and the todo list is in the state,
         TodoCards will then be re-rendered with the new todoList. 
+
+        More about re-rendering here: https://felixgerschau.com/react-rerender-components/#want-to-see-re-rendering-in-action
 
         */}
         <TodoCards 

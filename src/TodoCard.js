@@ -6,17 +6,15 @@ function TodoCard({todo, index, deleteCallback, editCallback}) {
     //useEffect, etc to handle maintaining a state and so on
     
     const [editing, setEditing] = useState(false);
-    const [input, setInput] = useState("");
 
     //Can't call state setter directly in jsx, would pass in and use handler functions instead 
     //Using state setters directly in jsx would cause a render to happen before the current rendering is done
 
-    const handleInputChange = (event) => {
-        setInput(event.target.value);
+    const handleChange = (field, value) => {
+        todo[field] = value;
     }
 
-    const handleInputFinish = () => {
-        todo.name = input;
+    const handleFinishClick = () => {
         editCallback(todo, index);
         setEditing(false);
     }
@@ -25,16 +23,12 @@ function TodoCard({todo, index, deleteCallback, editCallback}) {
         setEditing(true);
     }
 
-    const handlePriorityChange = (event) => {
-        todo.priority = event.target.value;
-        editCallback(todo, index);
-    }
-
     //Don't need to add "this." to function in functional based react
     //For both functional and class based, don't need to add parenthesis to function calls if functions don't have any arguments
 
     //ALWAYS NEED arrow function whenever a function is declared with parenthesis (including passing in arguments)
     //If you declare with parenthesis but don't add in a arrow function, then the function gets called whenever the page loads
+    //More about it here: https://codingstatus.com/react-event-handling/
     return (
         <li>
             {
@@ -56,19 +50,19 @@ function TodoCard({todo, index, deleteCallback, editCallback}) {
                 ? 
                 <>
                     <input 
-                    onChange={(event) => handleInputChange(event)}
+                    onChange={(event) => handleChange("name", event.target.value)}
                     />
 
                     <select 
                     defaultValue={todo.priority}
-                    onChange={(event) => handlePriorityChange(event)}
+                    onChange={(event) => handleChange("priority", event.target.value)}
                     >
                         <option> Low </option>
                         <option> Medium </option>
                         <option> Hard </option>
                     </select>
 
-                    <button onClick={handleInputFinish}>
+                    <button onClick={handleFinishClick}>
                         Finish
                     </button>
                 </>
